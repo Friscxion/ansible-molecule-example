@@ -1,0 +1,19 @@
+- name: Installation de nginx
+  apt:
+    name: nginx
+    update_cache: yes
+
+- name: Lancement du service nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+
+- name: Reglage du service nginx
+  ansible.builtin.service:
+    name: nginx
+    enabled: yes
+
+- name: Copie de index.html sur nginx
+  ansible.builtin.copy:
+    src: index.html
+    dest: /var/www/html/index.html

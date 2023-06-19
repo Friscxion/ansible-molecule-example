@@ -1,0 +1,31 @@
+- name: Installation du package "yarn" en global.
+  community.general.npm:
+    name: yarn
+    global: true
+
+- name: Telechargement de la branche github
+  ansible.builtin.git:
+    repo: 'https://github.com/Friscxion/lol-bet-cesi.git'
+    dest: /home/ubuntu/node-app
+
+- name: Installation des packages
+  community.general.yarn:
+    path: /home/ubuntu/node-app/api
+
+- name: Installation des packages
+  community.general.yarn:
+    path: /home/ubuntu/node-app/lol-bet
+
+- name: Lancer l'api backend
+  command:
+    chdir: /home/ubuntu/node-app/api
+    cmd: yarn start
+  async: 1000
+  poll: 0
+
+- name: Lancer le frontend React
+  command:
+    chdir: /home/ubuntu/node-app/lol-bet
+    cmd: yarn start
+  async: 1000
+  poll: 0

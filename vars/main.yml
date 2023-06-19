@@ -1,0 +1,7 @@
+---
+# vars file for my_new_role
+version: 1.0
+packages:
+  - curl
+  - nano
+  - git-all
